@@ -1,17 +1,22 @@
-import React from 'react'
+import React, {useState} from 'react'
+import HeadingText from '../Heading-text/HeadingText';
 
 const Home = () => {
+
+    const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
+    const [text, setText] = useState('');
+    
+      const handleSubmit = (e) => {
+        e.preventDefault();
+        console.log('Signup:', { name, email, text })
+      };
+  
   return (
   
     <div className="px-16 flex flex-col">
  
-        <h1 className="mt-10 mb-5 text-2xl font-extrabold justify-start items-center">
-            CONTACT US
-        </h1>
-
-        <p className="text-xs font-medium flex flex-row flex-wrap">
-            LET'S CONNECT: WE'RE HERE TO HELP. AND WE'D LOVE TO HERE FROM YOU! WEATHER YOU HAVE A QUESTION, COMMENT, OR JUST WANT TO CHAT, YOU CAN REACH OUT US THROUGH THE CONTACT FORM OF THIS PAGE, OR BY PHONE, EMAIL, OR SOCIAL MEDIA.
-        </p>
+     <HeadingText/>
 
 <div className="flex flex-col justify-between sm:flex-row">
     
@@ -38,23 +43,41 @@ const Home = () => {
             </div>
         </div>
 
-        <div className="px-5 py-5 flex flex-col justify-center-items-center">
-            <input type="text" 
+        <form onSubmit={handleSubmit} className="px-5 py-5 flex flex-col justify-center-items-center">
+
+            <input 
+            type="text" 
             className="h-8 mt-5 px-2 py-2 border-2 border-black"
-            placeholder='Name' />
-            <input type="text" 
+            placeholder='Name'
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            required
+ />
+            <input 
+            type="text" 
             className="h-8 mt-5 px-2 py-2 border-2 border-black"
-            placeholder='E-Mail' />
-            <input type="text" 
+            placeholder='E-Mail' 
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+/>
+            <input 
+            type="text" 
             className="h-20 mt-5 px-2 py-2 border-2 border-black flex flex-wrap justify-center items-center"
-            placeholder='Text' />
+            placeholder='Text' 
+            value={text}
+              onChange={(e) => setText(e.target.value)}
+            required
+/>
 
             <div className="flex flex-row justify-end">
-              <div className="cursor-pointer h-8 w-2/6 mt-5 px-5 text-xs bg-black text-white flex justify-center items-center font-bold">
+              <button
+              type='submit' 
+              className="cursor-pointer h-8 w-2/6 mt-5 px-5 text-xs bg-black text-white flex justify-center items-center font-bold">
             Submit
+            </button>
             </div>
-            </div>
-        </div>
+        </form>
     </div>
 </div>
 
